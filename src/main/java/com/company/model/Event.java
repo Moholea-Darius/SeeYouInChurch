@@ -1,15 +1,13 @@
 package com.company.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public abstract class Event {
 
     private int id;
-
     private String name;
-
     private LocalDateTime startDate;
-
     private LocalDateTime endDate;
 
     public Event(int id, String name, LocalDateTime startDate, LocalDateTime endDate) {

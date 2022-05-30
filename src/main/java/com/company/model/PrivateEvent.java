@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 public class PrivateEvent extends Event{
 
     private String location;
-
     private String details;
 
     public PrivateEvent(int id, String name, LocalDateTime startDate, LocalDateTime endDate, String location, String details) {

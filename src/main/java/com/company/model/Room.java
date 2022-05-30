@@ -7,11 +7,8 @@ import java.util.Objects;
 public class Room {
 
     private int id;
-
     private int number;
-
     private int maxCapacity ;
-
     private Status status;
 
     public Room(int id, int number, int maxCapacity, Status status) {

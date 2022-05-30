@@ -8,13 +8,9 @@ import java.util.Objects;
 public class Announcement {
 
     private int id;
-
     private String sender;
-
     private String message;
-
     private AnnouncementType type;
-
     private LocalDateTime sentDate;
 
     public Announcement(int id, String sender, String message, AnnouncementType type, LocalDateTime sentDate) {
