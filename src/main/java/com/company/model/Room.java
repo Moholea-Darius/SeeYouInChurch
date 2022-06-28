@@ -11,6 +11,8 @@ public class Room {
     private int maxCapacity ;
     private Status status;
 
+    public Room() {}
+
     public Room(int id, int number, int maxCapacity, Status status) {
         this.id = id;
         this.number = number;
