@@ -50,7 +50,7 @@ public class RoomController {
     @PutMapping("/updateRoomStatus")
     public void Put(@RequestParam("number") int number) {
         Room room = backendClient
-                .put().uri(ROOMS_BASE_URL + "updateRoomStatus/" + number)
+                .put().uri(ROOMS_BASE_URL + number)
                 .accept(MediaType.APPLICATION_JSON)
                 .retrieve()
                 .bodyToMono(Room.class)
