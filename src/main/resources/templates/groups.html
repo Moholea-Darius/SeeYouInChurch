@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link th:href="@{/styles/seeYouInChurch.css}" rel="stylesheet"/>
+
+</head>
+
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#myPage">See you in Church!</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+
+                <li><a href="/">HOME</a></li>
+                <li><a href="/users">MEMBERS</a></li>
+                <li><a href="/groups">GROUPS</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">EVENTS
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/privateEvent">PRIVATE EVENTS</a></li>
+                        <li><a href="/publicEvent">PUBLIC EVENTS</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#user">USER
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li id="userMenu_Notifications"><a href="/notifications">Notifications</a></li>
+                        <li id="userMenu_LogIn"><a href="/login">Login</a></li>
+                        <li id="userMenu_LogOut"><a href="/logout">Logout</a></li>
+                        <li id="userMenu_Register"><a href="/register">Sign-up</a></li>
+                        </li>
+                    </ul>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<!-- Container (The groups Section) -->
+<div id="groups" class="container text-center">
+    <h3>THE CHURCH: GROUPS</h3>
+    <p><em>Here you can see all our groups from our Church.</em></p>
+    <br>
+    <div class="row">
+        <div class="col-sm-4">
+            <p class="text-center"><strong>"Tineri"</strong></p>
+            <button type="button" class="btn joinGroupButton" id="joinGroupButton_Tineri" data-toggle="modal"
+                    data-target="#modalJoinGroup">Join
+            </button>
+            <button type="button" class="btn aboutGroupButton" id="aboutGroupButton_Tineri" data-toggle="modal"
+                    data-target="#modalAboutGroup">About
+            </button>
+            <a href="#demo_groups1" data-toggle="collapse">
+                <img th:src="@{/assets/img/groups.png}" class="img-circle person" alt="Tineri" width="255" height="255">
+            </a>
+            <div id="demo_groups1" class="collapse">
+
+
+                <div class="col-sm-6">
+                    <a href="#demo_groups1_users1" data-toggle="collapse">
+                        <p class="text-center"><strong>Andrei Pop</strong></p>
+                    </a>
+                    <div id="demo_groups1_users1" class="collapse">
+                        <p>Role: "Membru"</p>
+                        <p>abc@gmail.com</p>
+                        <p>0752685942</p>
+                    </div>
+                </div>
+
+
+                <div class="col-sm-6">
+                    <a href="#demo_groups1_users2" data-toggle="collapse">
+                        <p class="text-center"><strong>Tudor Popa</strong></p>
+                    </a>
+                    <div id="demo_groups1_users2" class="collapse">
+                        <p>Role: "Membru"</p>
+                        <p>abc@gmail.com</p>
+                        <p>0752685942</p>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <p class="text-center"><strong>"Familisti"</strong></p>
+            <button type="button" class="btn joinGroupButton" id="joinGroupButton_Familisti" data-toggle="modal"
+                    data-target="#modalJoinGroup">Join
+            </button>
+            <button type="button" class="btn aboutGroupButton" id="aboutGroupButton_Familisti" data-toggle="modal"
+                    data-target="#modalAboutGroup">About
+            </button>
+            <a href="#demo_groups2" data-toggle="collapse">
+                <img src="IMG/groups.png" class="img-circle person" alt="Familisti" width="255" height="255">
+            </a>
+            <div id="demo_groups2" class="collapse">
+
+
+                <div class="col-sm-6">
+
+                    <a href="#demo_groups2_users1" data-toggle="collapse">
+                        <p class="text-center"><strong>Gheorghe Dinu</strong></p>
+                    </a>
+                    <div id="demo_groups2_users1" class="collapse">
+                        <p>Role: "Admin"</p>
+                        <p>abc@gmail.com</p>
+                        <p>0752685942</p>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+
+                    <a href="#demo_groups2_users2" data-toggle="collapse">
+                        <p class="text-center"><strong>George Mincu</strong></p>
+                    </a>
+                    <div id="demo_groups2_users2" class="collapse">
+                        <p>Role: "Membru"</p>
+                        <p>abc@gmail.com</p>
+                        <p>0755485942</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalJoinGroup" tabindex="-1" role="dialog" aria-labelledby="modalJoinGroup"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Group information</h4>
+            </div>
+            <div class="modal-body">
+                <p>You joining status is pending approval.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalAboutGroup" tabindex="-1" role="dialog" aria-labelledby="modalAboutGroup"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Group information</h4>
+            </div>
+            <div class="modal-body">
+                <h3>Group description</h3>
+                <p>Bla bla bla bla bla</p>
+            </div>
+            <hr>
+            <div class="modal-body">
+                <h3>Number of members</h3>
+                <p>34</p>
+            </div>
+            <hr>
+            <div class="modal-body">
+                <h3>Events</h3>
+                <p>You can check this groups' <a href="privateEvent.html" class="tooltip-test" title="Check this link">Private
+                    Events</a> and the <a href="publicEvent.html" class="tooltip-test" title="Check this link">Public
+                    Events</a> from these links.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+$('.joinGroupButton').on('click', function () {
+   var $this = $(this);
+   $this.addClass('disabled').hide();
+})
+
+
+</script>
+
+
+</body>
+</html>
