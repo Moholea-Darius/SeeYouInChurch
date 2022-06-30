@@ -1,4 +1,4 @@
-package com.company.model.constants;
+package com.company.dtos.constant;
 
 public enum Sex {
 

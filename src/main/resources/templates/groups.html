@@ -28,22 +28,22 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
 
-                <li><a href="index.html">HOME</a></li>
-                <li><a href="users.html">MEMBERS</a></li>
-                <li><a href="groups.html">GROUPS</a></li>
+                <li><a href="/home">HOME</a></li>
+                <li><a href="/users">MEMBERS</a></li>
+                <li><a href="/groups">GROUPS</a></li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown">EVENTS
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="privateEvent.html">PRIVATE EVENTS</a></li>
-                        <li><a href="publicEvent.html">PUBLIC EVENTS</a></li>
+                        <li><a href="/privateEvent">PRIVATE EVENTS</a></li>
+                        <li><a href="/publicEvent">PUBLIC EVENTS</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#user">USER
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li id="userMenu_Notifications"><a href="notifications.html">Notifications</a><span class="badge">3</span></li>
+                        <li id="userMenu_Notifications"><a href="/notifications">Notifications</a><span class="badge">3</span></li>
                         <li id="userMenu_LogIn"><a href="login.html">Login</a></li>
                         <li id="userMenu_LogOut"><a href="logout.html">Logout</a></li>
                         <li id="userMenu_Register"><a href="register.html">Sign-up</a></li>
@@ -66,8 +66,8 @@
                data-target="#modalAddGroup"/>
     </form>
     <div class="row">
-        <div class="col-sm-4">
-            <p class="text-center"><strong>"Tineri"</strong></p>
+        <div th:each="group: ${groups}" class="col-sm-4">
+            <p class="text-center"><strong th:text="${group.name}"></strong></p>
             <form action="/join" class="joinGroup">
                 <input type="submit" value="Join" class="btn joinGroupButton" data-toggle="modal"
                        data-target="#modalJoinGroup"/>
