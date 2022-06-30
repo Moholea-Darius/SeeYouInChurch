@@ -21,12 +21,15 @@ body {
   .person:hover {
     border-color: #f1f1f1;
   }
+
   .carousel-inner img {
     -webkit-filter: grayscale(90%);
     filter: grayscale(90%); /* make all photos black and white */
-    width: 100%; /* Set width to 100% */
+ /* Set width to 100% */
+    width:100%;
     margin: auto;
   }
+
   .carousel-caption h3 {
     color: #fff !important;
   }
@@ -62,6 +65,25 @@ body {
     padding: 3px 15px;
     color: black;
   }
+  .btn-black {
+    padding: 3px 15px;
+    color: white;
+	background-color: black;
+  }
+  .btn-black:hover, .btn-black:focus {
+    color: white;
+	background-color: red;
+  }
+
+  .btn-round {
+	border-radius: 100%;
+	font-size: 25px;
+	border: 1px solid grey;
+	transition: background-color 0.2s ease-in-out;
+    position: relative;
+    right: -95%;
+    top: 5px;
+  }
  /* .btn {
     padding: 10px 20px;
     background-color: #333;
@@ -76,16 +98,15 @@ body {
   }*/
 
   #userMenu_Notifications .badge {
-    position: absolute;
-    top: 3px;
-    left: -12px;
-    padding: 5px 10px;
-    border-radius: 50%;
-    background: red;
-    color: white;
-    font-size: 12px;
-    }
-
+  position: absolute;
+  top: 3px;
+  left: -12px;
+  padding: 5px 10px;
+  border-radius: 50%;
+  background: red;
+  color: white;
+  font-size: 12px;
+  }
 
   .modal-header, h4, .close {
     background-color: #333;
