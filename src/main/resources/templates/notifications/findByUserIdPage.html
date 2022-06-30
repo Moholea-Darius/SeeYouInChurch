@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<table>
+    <tr th:each="notifications : ${notifications}">
+        <td th:text="${notifications}"></td>
+    </tr>
+</table>
+
+<p><a href="/notifications/notificationPage">back</a></p>
+
+<p><a href="/">home</a></p>
+
+</body>
+</html>

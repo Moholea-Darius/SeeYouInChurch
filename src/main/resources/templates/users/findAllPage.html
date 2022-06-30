@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>FindAll</title>
+</head>
+<body>
+
+<h1>CURRENT USERS PAGE</h1>
+
+<p>OUR CURRENT USERS ARE:</p>
+
+<table>
+    <tr th:each="users : ${users}">
+        <td th:text="${users}"></td>
+    </tr>
+</table>
+
+<p><a href="/users/userPage">back</a></p>
+
+<p><a href="/">home</a></p>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>UserPage</title>
+</head>
+<body>
+
+<h1>User Page</h1>
+
+<p>this is the user page!</p>
+
+<p><a href="/users/findAll">findAll</a></p>
+
+<form th:action="@{/users/findById}">
+    <label> findById  </label>
+    <input type="text" th:name="id"/>
+    <input type="submit"/>
+</form>
+
+<p><a href="/users/update">update</a></p>
+
+<p><a href="/users/add">add</a></p>
+
+<br>
+
+<p><a href="/">back</a></p>
+
+</body>
+</html>
