@@ -33,7 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .defaultSuccessUrl("/users", true)
+                .defaultSuccessUrl("/home", true)
                 .and()
                 .logout()
                 .logoutUrl("/logout")
@@ -44,10 +44,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     //            .formLogin()
       //          .loginPage("/login.html")
         //        .defaultSuccessUrl("/home.html")
-
-  //  @Override
-  //  public void configure(WebSecurity web) throws Exception {
-  //      web.ignoring().antMatchers("/**");
-  //  }
 
 }

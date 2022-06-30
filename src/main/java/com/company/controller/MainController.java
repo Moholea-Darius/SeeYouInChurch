@@ -1,9 +1,6 @@
 package com.company.controller;
 
-import com.company.service.GroupService;
-import com.company.service.PrivateEventService;
-import com.company.service.PublicEventService;
-import com.company.service.UserService;
+import com.company.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,11 +12,27 @@ public class MainController {
     @Autowired
     private UserService userService;
 
+    @Autowired
     private GroupService groupService;
 
+    @Autowired
     private PrivateEventService privateEventService;
 
+    @Autowired
     private PublicEventService publicEventService;
+
+    @Autowired
+    private AnnouncementService announcementService;
+
+    @Autowired
+    private NotificationService notificationService;
+
+    @GetMapping("/home")
+    public ModelAndView setHomeView() {
+        ModelAndView modelAndView = new ModelAndView("home.html");
+        modelAndView.addObject("announcements", announcementService.getLastThreeAnnouncements());
+        return modelAndView;
+    }
 
     @GetMapping("/users")
     public ModelAndView setUsersView() {
@@ -31,7 +44,7 @@ public class MainController {
     @GetMapping("/groups")
     public ModelAndView setGroupsView() {
         ModelAndView modelAndView = new ModelAndView("groups.html");
-       // modelAndView.addObject("groups", groupService.findAll());
+        modelAndView.addObject("groups", groupService.findByUserId(1));
         return modelAndView;
     }
 
@@ -45,10 +58,16 @@ public class MainController {
     @GetMapping("/publicEvent")
     public ModelAndView setPublicEventView() {
         ModelAndView modelAndView = new ModelAndView("publicEvent.html");
-       // modelAndView.addObject("publicEvents", privateEventService.findAll());
+        // modelAndView.addObject("publicEvents", privateEventService.findAll());
         return modelAndView;
     }
 
+    @GetMapping("/notifications")
+    public ModelAndView setNotificationView() {
+        ModelAndView modelAndView = new ModelAndView("notifications.html");
+        modelAndView.addObject("notifications", notificationService.findByUserId(1));
+        return modelAndView;
+    }
 
 
 }
