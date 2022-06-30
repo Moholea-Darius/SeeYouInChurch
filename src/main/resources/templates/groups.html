@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link th:href="@{/styles/seeYouInChurch.css}" rel="stylesheet"/>
+
+</head>
+
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#myPage">See you in Church!</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="users.html">MEMBERS</a></li>
+                <li><a href="groups.html">GROUPS</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">EVENTS
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="privateEvent.html">PRIVATE EVENTS</a></li>
+                        <li><a href="publicEvent.html">PUBLIC EVENTS</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#user">USER
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li id="userMenu_Notifications"><a href="notifications.html">Notifications</a></li>
+                        <li id="userMenu_LogIn"><a href="login.html">Login</a></li>
+                        <li id="userMenu_LogOut"><a href="logout.html">Logout</a></li>
+                        <li id="userMenu_Register"><a href="register.html">Sign-up</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<!-- Container (The groups Section) -->
+<div id="groups" class="container text-center">
+    <h3>THE CHURCH: GROUPS</h3>
+    <p><em>Here you can see all our groups from our Church.</em></p>
+    <br>
+    <form action="/createGroup">
+        <input type="submit" value="Create group" class="btn createGroupButton" data-toggle="modal"
+               data-target="#modalAddGroup"/>
+    </form>
+    <div class="row">
+        <div class="col-sm-4">
+            <p class="text-center"><strong>"Tineri"</strong></p>
+            <form action="/join" class="joinGroup">
+                <input type="submit" value="Join" class="btn joinGroupButton" data-toggle="modal"
+                       data-target="#modalJoinGroup"/>
+            </form>
+            <form action="/leave" class="leaveGroup">
+                <input type="submit" value="Leave" class="btn leaveGroupButton" data-toggle="modal"
+                       data-target="#modalLeaveGroup"/>
+            </form>
+            <!--<button type="button" class="btn aboutGroupButton" id="aboutGroupButton_Tineri" data-toggle="modal" data-target="#modalAboutGroup">About</button> -->
+            <a href="#" data-toggle="modal" data-target="#modalAboutGroup">
+                <img src="IMG/groups.png" class="img-circle person" alt="Tineri" width="255" height="255">
+            </a>
+
+        </div>
+    </div>
+    <!-- Modal PENTRU BUTONUL DE JOIN GROUPS -->
+    <div class="modal fade" id="modalJoinGroup" tabindex="-1" role="dialog" aria-labelledby="modalJoinGroup"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Group information</h4>
+                </div>
+                <div class="modal-body">
+                    <p>You joining status is pending approval.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal PENTRU BUTONUL DE LEAVE GROUPS -->
+    <div class="modal fade" id="modalLeaveGroup" tabindex="-1" role="dialog" aria-labelledby="modalLeaveGroup"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Leaving group</h4>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Are you sure you want to leave this group?</strong></p>
+                </div>
+                <form action="/leaveGroup">
+                    <input type="submit" value=" Yes " class="btn btn-black modal_leaveGroupButton"/>
+                </form>
+                <button type="button" class="btn btn-black" data-dismiss="modal"> No</button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal PENTRU BUTONUL DE ABOUT GROUPS -->
+    <div class="modal fade" id="modalAboutGroup" tabindex="-1" role="dialog" aria-labelledby="modalAboutGroup"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Group information</h4>
+                </div>
+                <div class="modal-body">
+                    <h3>Group description</h3><textarea class="form-control DescriptionAboutGroup" rows="3"
+                                                        placeholder="XBla bla bla bla blaaaa"></textarea>
+                </div>
+                <form action="/updateDescription">
+                    <input type="submit" value="Update description"
+                           class="btn btn-secondary updateDescriptionAboutGroupButton"/>
+                </form>
+                <hr>
+                <div class="modal-body">
+                    <h3>Members</h3>
+                    <p>Total number of this groups' members is 34</p>
+
+
+                    <a href="#groupMembers" data-toggle="collapse">
+                        <p class="text-center">Check our members</p>
+                    </a>
+                    <div id="groupMembers" class="collapse">
+                        <p>IIon Andreica</p>
+                        <p>IIon Andreica</p>
+                        <p>IIon Andreica</p>
+                        <p>Ion Andreica Toni Mihai Cerna</p>
+
+                    </div>
+
+                </div>
+                <hr>
+                <div class="modal-body">
+                    <h3>Events</h3>
+                    <p>You can check this groups' <a href="privateEvent.html" class="tooltip-test"
+                                                     title="Check this link">Private Events</a> and the <a
+                            href="publicEvent.html" class="tooltip-test" title="Check this link">Public Events</a>
+                        from these links.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal PENTRU BUTONUL DE ADD GROUPS -->
+    <div class="modal fade" id="modalAddGroup" tabindex="-1" role="dialog" aria-labelledby="modalAddGroup"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Create group</h4>
+                </div>
+
+                <form class="modal-body">
+                    <div class="form-group">
+                        <label for="group-name" class="col-form-label">Group name:</label>
+                        <input type="text" class="form-control" id="group-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="group-description" class="col-form-label">Group description:</label>
+                        <textarea class="form-control" id="group-description"></textarea>
+                    </div>
+                </form>
+
+                <div class="modal-footer">
+                    <form action="/createGroup">
+                        <input type="submit" value="Create group" class="btn btn-black addGroupButton"/>
+                    </form>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script>
+$('.joinGroupButton').on('click', function () {
+   var $this = $(this);
+   $this.addClass('disabled').hide();
+})
+
+$('.modal_leaveGroupButton').on('click', function () {
+   var $this = $(this);
+   $('#modalLeaveGroup').modal('toggle');
+   alert("You have left this group. \n");
+})
+
+$('.updateDescriptionAboutGroupButton').on('click', function () {
+   var $this = $(this);
+   var description = $('.DescriptionAboutGroup').val();
+   alert("The description has been updated with \n" + description);
+})
+
+$('.addGroupButton').on('click', function () {
+   var groupName = $('#group-name').val();
+   var groupDescription = $('#group-description').val();
+
+   if(groupName.length >= 3 && groupDescription.length >= 3) {
+      alert("New group created! \n");
+	  $('#group-name').val('');
+	  $('#group-description').val('');
+	  $('#modalAddGroup').modal('toggle');
+   }
+})
+
+
+
+
+
+    </script>
+
+
+</body>
+</html>

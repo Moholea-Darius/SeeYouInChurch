@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link th:href="@{/styles/seeYouInChurch.css}" rel="stylesheet"/>
+
+</head>
+
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#myPage">See you in Church!</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+
+                <li><a href="/">HOME</a></li>
+                <li><a href="/users">MEMBERS</a></li>
+                <li><a href="/groups">GROUPS</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">EVENTS
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/privateEvent">PRIVATE EVENTS</a></li>
+                        <li><a href="/publicEvent">PUBLIC EVENTS</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#user">USER
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li id="userMenu_Notifications"><a href="/notifications">Notifications</a></li>
+                        <li id="userMenu_LogIn"><a href="/login">Login</a></li>
+                        <li id="userMenu_LogOut"><a href="/logout">Logout</a></li>
+                        <li id="userMenu_Register"><a href="/register">Sign-up</a></li>
+                    </ul>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<!-- Container (The members Section) -->
+<div id="users" class="container text-center">
+    <h3>THE CHURCH: MEMBERS</h3>
+    <p><em>Here you can see all our members from our Church.</em></p>
+    <br>
+    <div class="row">
+        <div class="col-sm-4">
+            <p class="text-center"><strong>Ion Andreica</strong></p><br>
+            <a href="#demo" data-toggle="collapse">
+                <img th:src="@{/assets/img/user_image.jpeg}" class="img-circle person" alt="Ion Andreica" width="255"
+                     height="255">
+            </a>
+            <div id="demo" class="collapse">
+                <p>Role: "Member"</p>
+                <p>Groups: "Tineri", "Voce"</p>
+                <p>Department: "departament_1", "departament_2"</p>
+                <p>abc@gmail.com</p>
+                <p>0752685942</p>
+                <p>Member since 2005</p>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <p class="text-center"><strong>Gheorghe Dinu</strong></p><br>
+            <a href="#demo2" data-toggle="collapse">
+                <img th:src="@{/assets/img/user_image.jpeg}" class="img-circle person" alt="Gheorghe Dinu" width="255"
+                     height="255">
+            </a>
+            <div id="demo2" class="collapse">
+                <p>Role: "Admin"</p>
+                <p>Groups: "Pastori", "Chitara"</p>
+                <p>Department: "departament_1", "departament_2"</p>
+                <p>abc@gmail.com</p>
+                <p>0752685942</p>
+                <p>Member since 1998</p>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <p class="text-center"><strong>Andrei Pop</strong></p><br>
+            <a href="#demo3" data-toggle="collapse">
+                <img th:src="@{/assets/img/user_image.jpeg}" class="img-circle person" alt="Andrei Pop" width="255"
+                     height="255">
+            </a>
+            <div id="demo3" class="collapse">
+                <p>Role: "Membru"</p>
+                <p>Groups: "Familisti", "Chitara"</p>
+                <p>Department: "departament_1", "departament_2"</p>
+                <p>abc@gmail.com</p>
+                <p>0752685942</p>
+                <p>Member since 1996</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link th:href="@{/styles/seeYouInChurch.css}" rel="stylesheet"/>
+
+</head>
+
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#myPage">See you in Church!</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+
+                <li><a href="/">HOME</a></li>
+                <li><a href="/users">MEMBERS</a></li>
+                <li><a href="/groups">GROUPS</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">EVENTS
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/privateEvent">PRIVATE EVENTS</a></li>
+                        <li><a href="/publicEvent">PUBLIC EVENTS</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#user">USER
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li id="userMenu_Notifications"><a href="/notifications">Notifications</a></li>
+                        <li id="userMenu_LogIn"><a href="/login">Login</a></li>
+                        <li id="userMenu_LogOut"><a href="/logout">Logout</a></li>
+                        <li id="userMenu_Register"><a href="/register">Sign-up</a></li>
+                    </ul>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<!-- Container (NOTIFICATION Section) -->
+<div class="container">
+    <h3 class="text-center">Notifications</h3>
+
+    <div id="notifications" class="text-center">
+        <ul class="list-unstyled">
+            <li>
+                <h2>Excursie organizata cu tinerii "(notificaction.title)"</h2>
+                <p><strong>Va invitam sa va inscrieti la excursia organizata de "(notificaction.message)"</strong></p>
+                <p>De la "Tineri" "(notificaction.sender)" la data 07.04.2022 "(notificaction.sendDate)"</p>
+            </li>
+
+            <hr>
+            <li>
+                <h2>Excursie organizata cu tinerii "(notificaction.title)"</h2>
+                <p><strong>Va invitam sa va inscrieti la excursia organizata de "(notificaction.message)"</strong></p>
+                <p>De la "Tineri" "(notificaction.sender)" la data 07.04.2022 "(notificaction.sendDate)"</p>
+            </li>
+            <li>
+
+                <hr>
+
+                <h2>Excursie organizata cu tinerii "(notificaction.title)"</h2>
+                <p><strong>Va invitam sa va inscrieti la excursia organizata de "(notificaction.message)"</strong></p>
+                <p>De la "Tineri" "(notificaction.sender)" la data 07.04.2022 "(notificaction.sendDate)"</p>
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+</body>
+</html>
