@@ -8,6 +8,9 @@ public class Church {
     private String phoneNumber;
     private String Address;
 
+    public Church() {}
+
+
     public Church(int id, String name, String email, String phoneNumber, String address) {
         this.id = id;
         this.name = name;
