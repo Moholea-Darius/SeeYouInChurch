@@ -173,17 +173,9 @@
     <div class="tab-content">
         <div id="announcements" class="tab-pane fade in active">
             <ul>
-                <li>
-                    <h2>Excursie organizata cu tinerii</h2>
-                    <p>Va invitam sa va inscrieti la excursia organizata de .........</p>
-                </li>
-                <li>
-                    <h2>Nunta la biserica</h2>
-                    <p>Avem placerea de a va invita la nunta.....</p>
-                </li>
-                <li>
-                    <h2>Donatii</h2>
-                    <p>$$$$$$$$$$$$$$$$</p>
+                <li th:each="announcement: ${announcements}">
+                    <h2 th:text="${announcement.sender}"></h2>
+                    <p th:text="${announcement.message}"></p>
                 </li>
             </ul>
         </div>

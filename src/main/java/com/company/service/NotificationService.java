@@ -1,7 +1,7 @@
 package com.company.service;
 
 import com.company.dtos.NotificationDTO;
-import com.company.dtos.constants.NotificationStatus;
+import com.company.dtos.constant.NotificationStatus;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;

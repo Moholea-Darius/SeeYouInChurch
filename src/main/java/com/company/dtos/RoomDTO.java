@@ -5,18 +5,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
-
 @Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AnnouncementDTO implements Serializable {
+public class RoomDTO {
 
     private int id;
-    private String sender;
-    private String message;
-    private String type;
-    private String sendDate;
+    private int number;
+    private int maxCapacity;
+    private String status;
 
 }

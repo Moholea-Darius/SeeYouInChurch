@@ -1,4 +1,4 @@
-package com.company.dtos.constants;
+package com.company.dtos.constant;
 
 public enum UserType {
 

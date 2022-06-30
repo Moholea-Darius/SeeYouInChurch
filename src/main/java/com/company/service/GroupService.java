@@ -1,7 +1,6 @@
 package com.company.service;
 
 import com.company.dtos.GroupDTO;
-
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
