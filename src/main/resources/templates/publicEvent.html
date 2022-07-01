@@ -31,27 +31,43 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
 
-                <li><a href="/home">HOME</a></li>
-                <li><a href="/users">MEMBERS</a></li>
-                <li><a href="/groups">GROUPS</a></li>
+                <li><a href="home.html">HOME</a></li>
+                <li><a href="users.html">MEMBERS</a></li>
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">GROUPS
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="myGroups.html">MY GROUPS</a></li>
+                        <li><a href="joinGroups.html">JOIN GROUPS</a></li>
+                        <li><a href="addGroups.html">CREATE GROUPS</a></li>
+                    </ul>
+                </li>
+
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown">EVENTS
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/privateEvent">PRIVATE EVENTS</a></li>
-                        <li><a href="/publicEvent">PUBLIC EVENTS</a></li>
+                        <li><a href="privateEvent.html">PRIVATE EVENTS CALENDAR</a></li>
+                        <li><a href="publicEvent.html">PUBLIC EVENTS CALENDAR</a></li>
+                        <li><a href="eventList.html">EVENT LIST</a></li>
+                        <li><a href="addPrivateEvent.html">CREATE PRIVATE EVENT</a></li>
+                        <li><a href="addPublicEvent.html">CREATE PUBLIC EVENT</a></li>
                     </ul>
                 </li>
+
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#user">USER
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li id="userMenu_Notifications"><a href="/notifications">Notifications</a><span
+                        <li id="userMenu_Notifications"><a href="notifications.html">Notifications</a><span
                                 class="badge">3</span></li>
-                        <li id="userMenu_LogIn"><a href="/login">Login</a></li>
-                        <li id="userMenu_LogOut"><a href="/logout">Logout</a></li>
-                        <li id="userMenu_Register"><a href="/register">Sign-up</a></li>
+                        <li id="userMenu_LogIn"><a href="login.html">Login</a></li>
+                        <li id="userMenu_LogOut"><a href="logout.html">Logout</a></li>
+                        <li id="userMenu_Register"><a href="register.html">Sign-up</a></li>
                     </ul>
+                </li>
+
             </ul>
         </div>
     </div>
@@ -66,6 +82,8 @@
         <br>
         <h3 class="text-center">THE CHURCH: PUBLIC EVENTS</h3>
         <p class="text-center">Here are our public events. You can book an event here!</p>
+        <p class="text-center">You can also <a href="addPublicEvent.html" title="" style="color: white;">create a public
+            event here</a></p>
 
         <div class="contents">
             <div id="myCalendar">
@@ -75,8 +93,8 @@
 
         <script>
         var calendarInstance = new calendarJs( "myCalendar", {
-            exportEventsEnabled: true,
-            manualEditingEnabled: true, //IL SCHIMBAM PE "true" CAND USERUL SE LOGHEAZA SI ARE PRIVILEGII DE ADMIN CA SA POATA EDITA EVENTS
+            exportEventsEnabled: false,
+            manualEditingEnabled: false, //IL SCHIMBAM PE "true" CAND USERUL SE LOGHEAZA SI ARE PRIVILEGII DE ADMIN CA SA POATA EDITA EVENTS
             showTimesInMainCalendarEvents: true,
             visibleDays: [ 0, 1, 2, 3, 4, 5, 6 ],
 			fullScreenModeEnabled: true,
@@ -112,7 +130,6 @@
 
             ];
 
-
         }
 
 		$('.checkbox:contains("Is All-Day")').remove();
@@ -120,6 +137,11 @@
 		$('.tab-control:contains("Repeats")').remove();
 		$('.select-colors').remove();
 		$('.tab-control:contains("Optional")').text('Details');
+		$('.tab-control:contains("Organizer")').remove();
+		$('.tab-control:contains("Display")').remove();
+		$('.ib-pin').remove();
+		$('.ib-refresh').remove();
+		$('.ib-hamburger').remove();
 
 
         </script>
