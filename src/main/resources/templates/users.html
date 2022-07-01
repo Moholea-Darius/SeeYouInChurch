@@ -62,12 +62,12 @@
     <div class="row">
 
         <div th:each="user: ${users}" class="col-sm-4">
-            <p class="text-center"><strong th:text="${user.name}" ></strong></p><br>
-            <a th:href="${'#demo' + user.id}" data-toggle="collapse">
-                <img th:src="@{/assets/img/user_image.jpeg}" class="img-circle person" alt="Ion Andreica" width="255"
+            <p class="text-center"><strong th:text="${user.name + ' ' + user.surname}" ></strong></p><br>
+            <a th:href="${'#' + user.id}" data-toggle="collapse">
+                <img th:src="@{/assets/img/user_image.jpeg}" class="img-circle person" alt="${user.name + ' ' + user.surname}" width="255"
                      height="255">
             </a>
-            <div th:id="${'demo' + user.id}" class="collapse">
+            <div th:id="${user.id}" class="collapse">
                 <p th:text="${user.userType}"></p>
                 <p th:text="${user.departments}"></p>
                 <p th:text="${user.email}"></p>
