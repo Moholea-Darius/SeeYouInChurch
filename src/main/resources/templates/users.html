@@ -30,22 +30,39 @@
 
                 <li><a href="/home">HOME</a></li>
                 <li><a href="/users">MEMBERS</a></li>
-                <li><a href="/groups">GROUPS</a></li>
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">GROUPS
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/myGroups">MY GROUPS</a></li>
+                        <li><a href="/joinGroups">JOIN GROUPS</a></li>
+                        <li><a href="/addGroups">CREATE GROUPS</a></li>
+                    </ul>
+                </li>
+
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown">EVENTS
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/privateEvent">PRIVATE EVENTS</a></li>
-                        <li><a href="/publicEvent">PUBLIC EVENTS</a></li>
+                        <li><a href="/privateEvent">PRIVATE EVENTS CALENDAR</a></li>
+                        <li><a href="/publicEvent">PUBLIC EVENTS CALENDAR</a></li>
+                        <li><a href="/eventList">EVENT LIST</a></li>
+                        <li><a href="/addPrivateEvent">CREATE PRIVATE EVENT</a></li>
+                        <li><a href="/addPublicEvent">CREATE PUBLIC EVENT</a></li>
                     </ul>
                 </li>
+
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#user">USER
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li id="userMenu_Notifications"><a href="/notifications">Notifications</a><span class="badge">3</span></li>
+                        <li id="userMenu_Notifications"><a href="/notifications">Notifications</a><span
+                                class="badge">3</span></li>
                         <li id="userMenu_LogOut"><a href="/logout">Logout</a></li>
                     </ul>
+                </li>
+
             </ul>
         </div>
     </div>

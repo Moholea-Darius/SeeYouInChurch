@@ -32,7 +32,8 @@ public class PrivateEventService {
                 .ifModifiedSince(ZonedDateTime.now())
                 .retrieve();
 
-        return responseSpec.bodyToFlux(PrivateEventDTO.class).collectList().block();
+        List<PrivateEventDTO> list = responseSpec.bodyToFlux(PrivateEventDTO.class).collectList().block();
+        return list;
     }
 
     public PrivateEventDTO findById(int id) {
