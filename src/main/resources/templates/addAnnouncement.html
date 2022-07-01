@@ -68,30 +68,40 @@
     </div>
 </nav>
 
-<!-- Container (The members Section) -->
-<div id="users" class="container text-center">
-    <h3>THE CHURCH: MEMBERS</h3>
-    <p><em>Here you can see all our members from our Church.</em></p>
-    <br>
-    <div class="row">
+<div id="groups" class="container text-center">
+    <h5>SeeYouInChurch: ANNOUNCEMENTS</h5>
+    <h3>Create announcement</h3>
+    <hr>
 
-        <div th:each="user: ${users}" class="col-sm-4">
-            <p class="text-center"><strong th:text="${user.name + ' ' + user.surname}" ></strong></p><br>
-            <a th:href="${'#' + user.id}" data-toggle="collapse">
-                <img th:src="@{/assets/img/user_image.jpeg}" class="img-circle person" alt="${user.name + ' ' + user.surname}" width="255"
-                     height="255">
-            </a>
-            <div th:id="${user.id}" class="collapse">
-                <p th:text="${user.userType}"></p>
-                <p th:text="${user.departments}"></p>
-                <p th:text="${user.email}"></p>
-                <p th:text="${user.phoneNumber}"></p>
-                <p th:text="${user.address}"></p>
-            </div>
+    <form method="POST" th:action="@{/addAnnouncement}" th:object="${announcementDTO}" action="/createAnnouncement">
+        <div class="form-group">
+            <label for="announcement-message" class="col-form-label">Announcement message:</label>
+            <textarea class="form-control announcement-message" id="announcement-message" rows="5" placeholder=""
+                      th:field="*{message}" required></textarea>
         </div>
+        <hr>
+        <label class="col-form-label">Announcement type:</label>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+            <label class="form-check-label" for="flexRadioDefault1">Unimportant</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+            <label class="form-check-label" for="flexRadioDefault2">Normal</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
+            <label class="form-check-label" for="flexRadioDefault3">Important</label>
+        </div>
+        <hr>
+        <input type="submit" value="Create announcement" class="btn btn-black modalAddAnnouncementButton"/>
+    </form>
 
-    </div>
 </div>
+
+<script>
+
+</script>
 
 </body>
 </html>

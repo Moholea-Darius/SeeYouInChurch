@@ -69,22 +69,67 @@
 </nav>
 
 
-<!-- Container (NOTIFICATION Section) -->
-<div class="container">
-    <h3 class="text-center">Notifications</h3>
+<!-- Container (The groups Section) -->
+<div id="groups" class="container text-center">
+    <h3>THE CHURCH: GROUPS</h3>
+    <p><em>Here you can see all the groups from our Church in which you take part.</em></p>
+    <br>
 
-    <div id="notifications" class="text-center">
-        <ul class="list-unstyled">
-            <li th:each="notification: ${notifications}">
-                <h2 th:text="${notification.message}"></h2>
-                <p><strong th:text="${notification.message}"></strong></p>
-                <p th:text="${'De la ' + notification.sender + ' la data ' + notification.sendDate}"></p>
-                <hr>
-            </li>
-        </ul>
+    <div class="row">
+        <div class="col-sm-4">
+            <p class="text-center"><strong>"Tineri"</strong></p>
+
+            <form action="/leave" class="leaveGroup">
+                <input type="submit" value="Leave" class="btn leaveGroupButton" data-toggle="modal"
+                       data-target="#modalLeaveGroup"/>
+            </form>
+            <!--<button type="button" class="btn aboutGroupButton" id="aboutGroupButton_Tineri" data-toggle="modal" data-target="#modalAboutGroup">About</button> -->
+            <a href="aboutGroup.html">
+                <img src="IMG/groups.png" class="img-circle person" alt="Tineri" width="255" height="255">
+            </a>
+
+        </div>
     </div>
 
+
+    <!-- Modal PENTRU BUTONUL DE LEAVE GROUPS -->
+    <div class="modal fade" id="modalLeaveGroup" tabindex="-1" role="dialog" aria-labelledby="modalLeaveGroup"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Leaving group</h4>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Are you sure you want to leave this group?</strong></p>
+                </div>
+                <form action="/leaveGroup">
+                    <input type="submit" value=" Yes " class="btn btn-black modal_leaveGroupButton"/>
+                </form>
+                <button type="button" class="btn btn-black" data-dismiss="modal"> No</button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 </div>
+
+<script>
+
+$('.modal_leaveGroupButton').on('click', function () {
+   var $this = $(this);
+   $('#modalLeaveGroup').modal('toggle');
+   if(alert('You have left this group. \n')){}
+    else    window.location.reload(); 
+   
+})
+
+
+</script>
+
 
 </body>
 </html>

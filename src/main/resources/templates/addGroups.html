@@ -69,22 +69,47 @@
 </nav>
 
 
-<!-- Container (NOTIFICATION Section) -->
-<div class="container">
-    <h3 class="text-center">Notifications</h3>
+<!-- Container (The groups Section) -->
+<div id="groups" class="container text-center">
+    <h5>THE CHURCH: GROUPS</h5>
+    <h3>Create groups</h3>
+    <hr>
 
-    <div id="notifications" class="text-center">
-        <ul class="list-unstyled">
-            <li th:each="notification: ${notifications}">
-                <h2 th:text="${notification.message}"></h2>
-                <p><strong th:text="${notification.message}"></strong></p>
-                <p th:text="${'De la ' + notification.sender + ' la data ' + notification.sendDate}"></p>
-                <hr>
-            </li>
-        </ul>
-    </div>
+    <form class="">
+        <div class="form-group">
+            <label for="group-name" class="col-form-label">Group name:</label>
+            <input type="text" class="form-control" id="group-name" required>
+        </div>
+        <div class="form-group">
+            <label for="group-description" class="col-form-label">Group description:</label>
+            <textarea class="form-control" id="group-description" required></textarea>
+        </div>
+        <form action="/updateDescription">
+            <input type="submit" value="Create group" class="btn btn-secondary createGroup"/>
+        </form>
+    </form>
 
 </div>
+
+
+<script>
+
+$('.createGroup').on('click', function () {
+   var groupName = $('#group-name').val();     
+   var groupDescription = $('#group-description').val();  
+
+   if(groupName.length >= 3 && groupDescription.length >= 3) {
+      alert("New group created! \n");
+	  $('#group-name').val('');
+	  $('#group-description').val('');
+	  $('#modalAddGroup').modal('toggle');
+   }
+})
+
+
+
+</script>
+
 
 </body>
 </html>

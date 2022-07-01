@@ -69,22 +69,56 @@
 </nav>
 
 
-<!-- Container (NOTIFICATION Section) -->
-<div class="container">
-    <h3 class="text-center">Notifications</h3>
+<!-- Container (The groups Section) -->
+<div id="groups" class="container text-center">
+    <h3>THE CHURCH: GROUPS</h3>
+    <p><em>Here you can see all the groups from our Church which you can join.</em></p>
+    <br>
 
-    <div id="notifications" class="text-center">
-        <ul class="list-unstyled">
-            <li th:each="notification: ${notifications}">
-                <h2 th:text="${notification.message}"></h2>
-                <p><strong th:text="${notification.message}"></strong></p>
-                <p th:text="${'De la ' + notification.sender + ' la data ' + notification.sendDate}"></p>
-                <hr>
-            </li>
-        </ul>
+    <div class="row">
+        <div class="col-sm-4">
+            <p class="text-center"><strong>"Tineri"</strong></p>
+            <form action="/join" class="joinGroup">
+                <input type="submit" value="Join" class="btn joinGroupButton" data-toggle="modal"
+                       data-target="#modalJoinGroup"/>
+            </form>
+
+            <!--<button type="button" class="btn aboutGroupButton" id="aboutGroupButton_Tineri" data-toggle="modal" data-target="#modalAboutGroup">About</button> -->
+            <a href="aboutGroup.html">
+                <img src="IMG/groups.png" class="img-circle person" alt="Tineri" width="255" height="255">
+            </a>
+
+        </div>
     </div>
 
 </div>
+
+<div class="modal fade" id="modalJoinGroup" tabindex="-1" role="dialog" aria-labelledby="modalJoinGroup"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Group information</h4>
+            </div>
+            <div class="modal-body">
+                <p>You joining status is pending approval.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+$('.joinGroupButton').on('click', function () {
+   var $this = $(this);
+   $this.addClass('disabled').hide();
+})
+
+</script>
+
 
 </body>
 </html>

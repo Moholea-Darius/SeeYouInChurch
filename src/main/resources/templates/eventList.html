@@ -69,22 +69,57 @@
 </nav>
 
 
-<!-- Container (NOTIFICATION Section) -->
-<div class="container">
-    <h3 class="text-center">Notifications</h3>
+<div id="addEvents" class="container">
+    <h1 class="text-center">Events</h1>
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#publicEvents">Public Events</a></li>
+        <li><a data-toggle="tab" href="#privateEvents">Private Events</a></li>
+    </ul>
 
-    <div id="notifications" class="text-center">
-        <ul class="list-unstyled">
-            <li th:each="notification: ${notifications}">
-                <h2 th:text="${notification.message}"></h2>
-                <p><strong th:text="${notification.message}"></strong></p>
-                <p th:text="${'De la ' + notification.sender + ' la data ' + notification.sendDate}"></p>
-                <hr>
-            </li>
-        </ul>
+    <div class="tab-content">
+        <div id="publicEvents" class="tab-pane fade in active">
+
+            <form action="addPublicEvent.html">
+                <input type="submit" value="+" class="btn btn-round" id="buttonAddPublicEvent"/>
+            </form>
+
+            <ul>
+                <li>
+                    <h2>Discutii in biserica cu tinerii familisti</h2>
+                    <p>From "start_date" to "end_date"</p>
+                    <p>Room number: 2, having the max capacity of 75 people.</p>
+                    <p>Invited groups: "Tineri", "Familisti"</p>
+                </li>
+            </ul>
+
+        </div>
+
+        <div id="privateEvents" class="tab-pane fade">
+
+            <form action="addPrivateEvent.html">
+                <input type="submit" value="+" class="btn btn-round" id="buttonAddPrivateEvent"/>
+            </form>
+
+            <ul>
+                <li>
+                    <h2>Excursie pe munte</h2>
+                    <p>From "start_date" to "end_date"</p>
+                    <p>Location: Piatra Craiului</p>
+                    <p>Details: Un weekend de neuitat la muntii Piatra Craiului.</p>
+                    <p>Invited groups: "Tineri", "Familisti"</p>
+                </li>
+            </ul>
+
+
+        </div>
+
+
     </div>
-
 </div>
+
+
+<script>
+</script>
 
 </body>
 </html>

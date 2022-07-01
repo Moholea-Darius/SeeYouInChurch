@@ -69,22 +69,59 @@
 </nav>
 
 
-<!-- Container (NOTIFICATION Section) -->
-<div class="container">
-    <h3 class="text-center">Notifications</h3>
+<!-- Container (The groups Section) -->
+<div id="groups" class="container text-center">
+    <h5>THE CHURCH: GROUPS</h5>
+    <h3>TINERI "GROUP NAME"</h3>
+    <hr>
+    <h3>Group description</h3>
+    <textarea class="form-control DescriptionAboutGroup" rows="3" placeholder="XBla bla bla bla blaaaa"></textarea>
 
-    <div id="notifications" class="text-center">
-        <ul class="list-unstyled">
-            <li th:each="notification: ${notifications}">
-                <h2 th:text="${notification.message}"></h2>
-                <p><strong th:text="${notification.message}"></strong></p>
-                <p th:text="${'De la ' + notification.sender + ' la data ' + notification.sendDate}"></p>
-                <hr>
-            </li>
-        </ul>
+    <form action="/updateDescription">
+        <input type="submit" value="Update description" class="btn btn-secondary updateDescriptionAboutGroupButton"/>
+    </form>
+    <hr>
+    <div class="">
+        <h3>Members</h3>
+        <p>Total number of this groups' members is 34</p>
+
+
+        <a href="#groupMembers" data-toggle="collapse">
+            <p class="text-center">Check our members</p>
+        </a>
+        <div id="groupMembers" class="collapse">
+            <p>IIon Andreica</p>
+            <p>IIon Andreica</p>
+            <p>IIon Andreica</p>
+            <p>Ion Andreica Toni Mihai Cerna</p>
+
+        </div>
+
+    </div>
+    <hr>
+    <div class="">
+        <h3>Events</h3>
+        <p>You can check this groups' <a href="privateEvent.html" class="tooltip-test" title="Check this link">Private
+            Events</a> and the <a href="publicEvent.html" class="tooltip-test" title="Check this link">Public Events</a>
+            from these links.</p>
     </div>
 
 </div>
+
+
+<script>
+$('.updateDescriptionAboutGroupButton').on('click', function () {
+   var $this = $(this); 
+   var description = $('.DescriptionAboutGroup').val();
+   if(description.length >= 3){
+     alert("The description has been updated with \n" + description);
+   }
+})
+
+
+
+</script>
+
 
 </body>
 </html>

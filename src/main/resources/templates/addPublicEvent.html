@@ -11,6 +11,11 @@
 
     <link th:href="@{/styles/seeYouInChurch.css}" rel="stylesheet"/>
 
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/datetimepicker-master/jquery.datetimepicker.css}">
+    <script th:src="@{/assets/datetimepicker-master/jquery.js}"></script>
+    <script th:src="@{/assets/datetimepicker-master/build/jquery.datetimepicker.full.min.js}"></script>
+
+
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
@@ -68,23 +73,86 @@
     </div>
 </nav>
 
+<div id="groups" class="container text-center">
+    <h5>THE CHURCH: EVENTS</h5>
+    <h3>Create Public event</h3>
+    <hr>
 
-<!-- Container (NOTIFICATION Section) -->
-<div class="container">
-    <h3 class="text-center">Notifications</h3>
+    <form class="">
+        <div class="form-group">
+            <label for="eventName" class="col-form-label">Public event name:</label>
+            <textarea class="form-control" id="eventName" rows="2" placeholder="" required></textarea>
+        </div>
 
-    <div id="notifications" class="text-center">
-        <ul class="list-unstyled">
-            <li th:each="notification: ${notifications}">
-                <h2 th:text="${notification.message}"></h2>
-                <p><strong th:text="${notification.message}"></strong></p>
-                <p th:text="${'De la ' + notification.sender + ' la data ' + notification.sendDate}"></p>
-                <hr>
-            </li>
-        </ul>
-    </div>
+        <hr>
+
+        <div class="form-group">
+            <label for="datetimepickerSTART" class="col-form-label">Public event start date:</label>
+            <br>
+            <input class="form-control" id="datetimepickerSTART" type="text" required>
+        </div>
+
+        <div class="form-group">
+            <label for="datetimepickerEND" class="col-form-label">Public event end date:</label>
+            <br>
+            <input class="form-control" id="datetimepickerEND" type="text" required>
+        </div>
+
+        <hr>
+
+        <div class="form-group">
+            <label class="col-form-label">Choose the room in which the event will take place:</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"
+                       checked>
+                <label class="form-check-label" for="exampleRadios1">Room 1, having the max. capacity of 250
+                    people</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                <label class="form-check-label" for="exampleRadios2">Room 2, having the max. capacity of 50
+                    people</label>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="form-group">
+            <label class="col-form-label">Check the groups that will attend:</label>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                <label class="form-check-label" for="inlineCheckbox1">Tineri</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                <label class="form-check-label" for="inlineCheckbox2">Familisti</label>
+            </div>
+        </div>
+        <hr>
+
+        <form action="/addPublicEvent">
+            <input type="submit" value="Create Public event" class="btn btn-black createPublicEventButton"/>
+        </form>
+    </form>
 
 </div>
+
+
+<script>
+$('form').on('submit', function () {
+
+  $('textarea').text('');
+   if(alert('Event created! \n')){}
+    else    window.location.reload();
+
+})
+
+jQuery('#datetimepickerSTART').datetimepicker();
+jQuery('#datetimepickerEND').datetimepicker();
+
+
+</script>
+
 
 </body>
 </html>
