@@ -9,14 +9,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-    <link th:href="@{/assets/calendar/css/styles.css}" rel="stylesheet"/>
-    <link th:href="@{/assets/calendar/src/calendarjs.css}" rel="stylesheet"/>
-    <script th:src="@{/assets/calendar/src/calendarjs.js}"></script>
     <link th:href="@{/styles/seeYouInChurch.css}" rel="stylesheet"/>
 
 </head>
 
-<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50" style="background-color:#2d2d30;">
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
@@ -74,82 +71,47 @@
 </nav>
 
 
-<!-- Container (groups Section) -->
-<br>
-<br>
-<div id="events" class="bg-1">
-    <div class="">
-        <br>
-        <h3 class="text-center">THE CHURCH: PRIVATE EVENTS</h3>
-        <p class="text-center">Here are our private events. You can book an event here!</p>
-        <p class="text-center">You can also <a href="addPrivateEvent.html" title="" style="color: white;">create a
-            private event here</a></p>
+<!-- Container (The groups Section) -->
+<div id="groups" class="container text-center">
+    <h5>THE CHURCH: GROUPS</h5>
+    <h3>Create groups</h3>
+    <hr>
 
-        <div class="contents">
-            <div id="myCalendar">
-            </div>
+    <form class="">
+        <div class="form-group">
+            <label for="group-name" class="col-form-label">Group name:</label>
+            <input type="text" class="form-control" id="group-name" required>
         </div>
-        <br>
+        <div class="form-group">
+            <label for="group-description" class="col-form-label">Group description:</label>
+            <textarea class="form-control" id="group-description" required></textarea>
+        </div>
+        <form action="/updateDescription">
+            <input type="submit" value="Create group" class="btn btn-secondary createGroup"/>
+        </form>
+    </form>
 
-        <script>
-        var calendarInstance = new calendarJs( "myCalendar", {
-            exportEventsEnabled: false,
-            manualEditingEnabled: false, //IL SCHIMBAM PE "true" CAND USERUL SE LOGHEAZA SI ARE PRIVILEGII DE ADMIN CA SA POATA EDITA EVENTS
-            showTimesInMainCalendarEvents: true,
-            visibleDays: [ 0, 1, 2, 3, 4, 5, 6 ],
-			fullScreenModeEnabled: true,
-            showExtraToolbarButtons: true,
-			hideEventsWithoutGroupAssigned: false,
-        } );
-
-        calendarInstance.addEvents( getEvents() );
-
-        function getEvents() {
-
-            return [
-                {
-                    from: "June 21, 2022 23:15:30",
-                    to: "June 22, 2022 23:45:30",
-                    title: "Intalnire cu tinerii",
-                    description: "ACEASTA ESTE O DESCRIERE",
-                    location: "Room 1",
-                    group: "Tineri"
-	            //  color: "#FF0000",
-                //  colorText: "#FFFF00",
-                //  colorBorder: "#00FF00"
-                },
-                {
-                    from: "June 26, 2022 23:15:30",
-                    to: "June 26, 2022 23:45:30",
-                    title: "Slujba de duminica",
-                    description: "ACEASTA ESTE O DESCRIERE",
-					repeatEvery:2
-                },
-
-				//repeatEver: How often the event should repeat (0 = Never, 1 = Every Day, 2 = Every Week, 3 = Every Month, 4 = Every Year)
-
-            ];
-
-
-        }
-
-		$('.checkbox:contains("Is All-Day")').remove();
-		$('.checkbox:contains("Show Alerts")').remove();
-		$('.tab-control:contains("Repeats")').remove();
-		$('.select-colors').remove();
-		$('.tab-control:contains("Optional")').text('Details');
-		$('.tab-control:contains("Organizer")').remove();
-		$('.tab-control:contains("Display")').remove();
-		$('.ib-pin').remove();
-		$('.ib-refresh').remove();
-		$('.ib-hamburger').remove();
-
-
-        </script>
-
-
-    </div>
 </div>
+
+
+<script>
+
+$('.createGroup').on('click', function () {
+   var groupName = $('#group-name').val();     
+   var groupDescription = $('#group-description').val();  
+
+   if(groupName.length >= 3 && groupDescription.length >= 3) {
+      alert("New group created! \n");
+	  $('#group-name').val('');
+	  $('#group-description').val('');
+	  $('#modalAddGroup').modal('toggle');
+   }
+})
+
+
+
+</script>
+
 
 </body>
 </html>

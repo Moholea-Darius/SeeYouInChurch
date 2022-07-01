@@ -9,14 +9,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-    <link th:href="@{/assets/calendar/css/styles.css}" rel="stylesheet"/>
-    <link th:href="@{/assets/calendar/src/calendarjs.css}" rel="stylesheet"/>
-    <script th:src="@{/assets/calendar/src/calendarjs.js}"></script>
     <link th:href="@{/styles/seeYouInChurch.css}" rel="stylesheet"/>
+
+    <link rel="stylesheet" type="text/css" href="datetimepicker-master/jquery.datetimepicker.css">
+    <script src="datetimepicker-master/jquery.js"></script>
+    <script src="datetimepicker-master/build/jquery.datetimepicker.full.min.js"></script>
 
 </head>
 
-<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50" style="background-color:#2d2d30;">
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
@@ -73,83 +74,67 @@
     </div>
 </nav>
 
+<div id="groups" class="container text-center">
+    <h5>THE CHURCH: EVENTS</h5>
+    <h3>Create private event</h3>
+    <hr>
 
-<!-- Container (groups Section) -->
-<br>
-<br>
-<div id="events" class="bg-1">
-    <div class="">
-        <br>
-        <h3 class="text-center">THE CHURCH: PRIVATE EVENTS</h3>
-        <p class="text-center">Here are our private events. You can book an event here!</p>
-        <p class="text-center">You can also <a href="addPrivateEvent.html" title="" style="color: white;">create a
-            private event here</a></p>
+    <form class="">
+        <div class="form-group">
+            <label for="eventName" class="col-form-label">Private event name:</label>
+            <textarea class="form-control" id="eventName" rows="2" placeholder="" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="eventLocation" class="col-form-label">Private event location:</label>
+            <textarea class="form-control" id="eventLocation" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="eventDescription" class="col-form-label">Private event description:</label>
+            <textarea class="form-control" id="eventDescription" rows="5" placeholder="" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="datetimepicker" class="col-form-label">Private event date:</label>
+            <br>
+            <input class="form-control" id="datetimepicker" type="text" required>
+        </div>
 
-        <div class="contents">
-            <div id="myCalendar">
+
+        <div class="form-group">
+            <label class="col-form-label">Check the groups that will attend:</label>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                <label class="form-check-label" for="inlineCheckbox1">Tineri</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                <label class="form-check-label" for="inlineCheckbox2">Familisti</label>
             </div>
         </div>
-        <br>
-
-        <script>
-        var calendarInstance = new calendarJs( "myCalendar", {
-            exportEventsEnabled: false,
-            manualEditingEnabled: false, //IL SCHIMBAM PE "true" CAND USERUL SE LOGHEAZA SI ARE PRIVILEGII DE ADMIN CA SA POATA EDITA EVENTS
-            showTimesInMainCalendarEvents: true,
-            visibleDays: [ 0, 1, 2, 3, 4, 5, 6 ],
-			fullScreenModeEnabled: true,
-            showExtraToolbarButtons: true,
-			hideEventsWithoutGroupAssigned: false,
-        } );
-
-        calendarInstance.addEvents( getEvents() );
-
-        function getEvents() {
-
-            return [
-                {
-                    from: "June 21, 2022 23:15:30",
-                    to: "June 22, 2022 23:45:30",
-                    title: "Intalnire cu tinerii",
-                    description: "ACEASTA ESTE O DESCRIERE",
-                    location: "Room 1",
-                    group: "Tineri"
-	            //  color: "#FF0000",
-                //  colorText: "#FFFF00",
-                //  colorBorder: "#00FF00"
-                },
-                {
-                    from: "June 26, 2022 23:15:30",
-                    to: "June 26, 2022 23:45:30",
-                    title: "Slujba de duminica",
-                    description: "ACEASTA ESTE O DESCRIERE",
-					repeatEvery:2
-                },
-
-				//repeatEver: How often the event should repeat (0 = Never, 1 = Every Day, 2 = Every Week, 3 = Every Month, 4 = Every Year)
-
-            ];
 
 
-        }
+        <form action="/addprivateEvent">
+            <input type="submit" value="Create private event" class="btn btn-black createPrivateEventButton"/>
+        </form>
+    </form>
 
-		$('.checkbox:contains("Is All-Day")').remove();
-		$('.checkbox:contains("Show Alerts")').remove();
-		$('.tab-control:contains("Repeats")').remove();
-		$('.select-colors').remove();
-		$('.tab-control:contains("Optional")').text('Details');
-		$('.tab-control:contains("Organizer")').remove();
-		$('.tab-control:contains("Display")').remove();
-		$('.ib-pin').remove();
-		$('.ib-refresh').remove();
-		$('.ib-hamburger').remove();
-
-
-        </script>
-
-
-    </div>
 </div>
+
+
+<script>
+$('form').on('submit', function () {
+
+  $('textarea').text('');
+   if(alert('Event created! \n')){}
+    else    window.location.reload(); 
+   
+})
+
+jQuery('#datetimepicker').datetimepicker();
+
+
+
+</script>
+
 
 </body>
 </html>

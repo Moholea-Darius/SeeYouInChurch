@@ -9,14 +9,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-    <link th:href="@{/assets/calendar/css/styles.css}" rel="stylesheet"/>
-    <link th:href="@{/assets/calendar/src/calendarjs.css}" rel="stylesheet"/>
-    <script th:src="@{/assets/calendar/src/calendarjs.js}"></script>
     <link th:href="@{/styles/seeYouInChurch.css}" rel="stylesheet"/>
 
 </head>
 
-<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50" style="background-color:#2d2d30;">
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
@@ -74,82 +71,58 @@
 </nav>
 
 
-<!-- Container (groups Section) -->
-<br>
-<br>
-<div id="events" class="bg-1">
+<!-- Container (The groups Section) -->
+<div id="groups" class="container text-center">
+    <h5>THE CHURCH: GROUPS</h5>
+    <h3>TINERI "GROUP NAME"</h3>
+    <hr>
+    <h3>Group description</h3>
+    <textarea class="form-control DescriptionAboutGroup" rows="3" placeholder="XBla bla bla bla blaaaa"></textarea>
+
+    <form action="/updateDescription">
+        <input type="submit" value="Update description" class="btn btn-secondary updateDescriptionAboutGroupButton"/>
+    </form>
+    <hr>
     <div class="">
-        <br>
-        <h3 class="text-center">THE CHURCH: PRIVATE EVENTS</h3>
-        <p class="text-center">Here are our private events. You can book an event here!</p>
-        <p class="text-center">You can also <a href="addPrivateEvent.html" title="" style="color: white;">create a
-            private event here</a></p>
+        <h3>Members</h3>
+        <p>Total number of this groups' members is 34</p>
 
-        <div class="contents">
-            <div id="myCalendar">
-            </div>
+
+        <a href="#groupMembers" data-toggle="collapse">
+            <p class="text-center">Check our members</p>
+        </a>
+        <div id="groupMembers" class="collapse">
+            <p>IIon Andreica</p>
+            <p>IIon Andreica</p>
+            <p>IIon Andreica</p>
+            <p>Ion Andreica Toni Mihai Cerna</p>
+
         </div>
-        <br>
-
-        <script>
-        var calendarInstance = new calendarJs( "myCalendar", {
-            exportEventsEnabled: false,
-            manualEditingEnabled: false, //IL SCHIMBAM PE "true" CAND USERUL SE LOGHEAZA SI ARE PRIVILEGII DE ADMIN CA SA POATA EDITA EVENTS
-            showTimesInMainCalendarEvents: true,
-            visibleDays: [ 0, 1, 2, 3, 4, 5, 6 ],
-			fullScreenModeEnabled: true,
-            showExtraToolbarButtons: true,
-			hideEventsWithoutGroupAssigned: false,
-        } );
-
-        calendarInstance.addEvents( getEvents() );
-
-        function getEvents() {
-
-            return [
-                {
-                    from: "June 21, 2022 23:15:30",
-                    to: "June 22, 2022 23:45:30",
-                    title: "Intalnire cu tinerii",
-                    description: "ACEASTA ESTE O DESCRIERE",
-                    location: "Room 1",
-                    group: "Tineri"
-	            //  color: "#FF0000",
-                //  colorText: "#FFFF00",
-                //  colorBorder: "#00FF00"
-                },
-                {
-                    from: "June 26, 2022 23:15:30",
-                    to: "June 26, 2022 23:45:30",
-                    title: "Slujba de duminica",
-                    description: "ACEASTA ESTE O DESCRIERE",
-					repeatEvery:2
-                },
-
-				//repeatEver: How often the event should repeat (0 = Never, 1 = Every Day, 2 = Every Week, 3 = Every Month, 4 = Every Year)
-
-            ];
-
-
-        }
-
-		$('.checkbox:contains("Is All-Day")').remove();
-		$('.checkbox:contains("Show Alerts")').remove();
-		$('.tab-control:contains("Repeats")').remove();
-		$('.select-colors').remove();
-		$('.tab-control:contains("Optional")').text('Details');
-		$('.tab-control:contains("Organizer")').remove();
-		$('.tab-control:contains("Display")').remove();
-		$('.ib-pin').remove();
-		$('.ib-refresh').remove();
-		$('.ib-hamburger').remove();
-
-
-        </script>
-
 
     </div>
+    <hr>
+    <div class="">
+        <h3>Events</h3>
+        <p>You can check this groups' <a href="privateEvent.html" class="tooltip-test" title="Check this link">Private
+            Events</a> and the <a href="publicEvent.html" class="tooltip-test" title="Check this link">Public Events</a>
+            from these links.</p>
+    </div>
+
 </div>
+
+
+<script>
+$('.updateDescriptionAboutGroupButton').on('click', function () {
+   var $this = $(this); 
+   var description = $('.DescriptionAboutGroup').val();
+   if(description.length >= 3){
+     alert("The description has been updated with \n" + description);
+   }
+})
+
+
+</script>
+
 
 </body>
 </html>
