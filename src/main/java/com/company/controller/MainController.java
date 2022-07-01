@@ -1,10 +1,16 @@
 package com.company.controller;
 
+import com.company.dtos.UserDTO;
 import com.company.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.ArrayList;
 
 @Controller
 public class MainController {
@@ -28,46 +34,57 @@ public class MainController {
     private NotificationService notificationService;
 
     @GetMapping("/home")
-    public ModelAndView setHomeView() {
+    public ModelAndView getHomeView() {
         ModelAndView modelAndView = new ModelAndView("home.html");
-        modelAndView.addObject("announcements", announcementService.getLastThreeAnnouncements());
+        try {
+            modelAndView.addObject("announcements", announcementService.getLastThreeAnnouncements());
+        } catch (WebClientResponseException e) {
+            modelAndView.addObject("noAnnouncements", "There are no announcements");
+        }
         return modelAndView;
+
     }
 
     @GetMapping("/users")
-    public ModelAndView setUsersView() {
+    public ModelAndView getUsersView() {
         ModelAndView modelAndView = new ModelAndView("users.html");
-        modelAndView.addObject("users", userService.findAll());
+            modelAndView.addObject("users", userService.findAll());
         return modelAndView;
     }
 
     @GetMapping("/groups")
-    public ModelAndView setGroupsView() {
+    public ModelAndView getGroupsView() {
         ModelAndView modelAndView = new ModelAndView("groups.html");
-        modelAndView.addObject("groups", groupService.findByUserId(1));
+        try {
+            modelAndView.addObject("groups", groupService.findAll());
+        } catch (WebClientResponseException e) {
+            modelAndView.addObject("noGroups", "Join a group to see them");
+        }
         return modelAndView;
     }
 
     @GetMapping("/privateEvent")
-    public ModelAndView setPrivateEventView() {
+    public ModelAndView getPrivateEventView() {
         ModelAndView modelAndView = new ModelAndView("privateEvent.html");
-        //modelAndView.addObject("privateEvents", privateEventService.findAll());
+        modelAndView.addObject("privateEvents", privateEventService.findAll());
         return modelAndView;
     }
 
     @GetMapping("/publicEvent")
-    public ModelAndView setPublicEventView() {
+    public ModelAndView getPublicEventView() {
         ModelAndView modelAndView = new ModelAndView("publicEvent.html");
-        // modelAndView.addObject("publicEvents", privateEventService.findAll());
+        modelAndView.addObject("publicEvents", privateEventService.findAll());
         return modelAndView;
     }
 
     @GetMapping("/notifications")
-    public ModelAndView setNotificationView() {
+    public ModelAndView getNotificationView() {
+        UserDTO userDTO = userService.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
         ModelAndView modelAndView = new ModelAndView("notifications.html");
-        modelAndView.addObject("notifications", notificationService.findByUserId(1));
+        modelAndView.addObject("notifications", notificationService.findByUserId(userDTO.getId()));
         return modelAndView;
     }
+
 
 
 }
