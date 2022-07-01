@@ -56,7 +56,7 @@ public class MainController {
 
     @GetMapping("/groups")
     public ModelAndView getGroupsView() {
-        ModelAndView modelAndView = new ModelAndView("groups.html");
+        ModelAndView modelAndView = new ModelAndView("groups.html   DEPRACTEDDDDDD");
         try {
             modelAndView.addObject("groups", groupService.findAll());
         } catch (WebClientResponseException e) {
