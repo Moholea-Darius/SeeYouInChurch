@@ -5,7 +5,10 @@ import com.company.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 import org.springframework.web.servlet.ModelAndView;
@@ -42,7 +45,6 @@ public class MainController {
             modelAndView.addObject("noAnnouncements", "There are no announcements");
         }
         return modelAndView;
-
     }
 
     @GetMapping("/users")
@@ -83,6 +85,22 @@ public class MainController {
         ModelAndView modelAndView = new ModelAndView("notifications.html");
         modelAndView.addObject("notifications", notificationService.findByUserId(userDTO.getId()));
         return modelAndView;
+    }
+
+    @GetMapping("/register")
+    public ModelAndView getRegisterPage(UserDTO userDTO) {
+        return new ModelAndView("register.html");
+    }
+
+    @PostMapping("/register")
+    public ModelAndView addUser(UserDTO userDTO) {
+        try {
+            System.out.println(userDTO.toString());
+            userService.add(userDTO);
+            return new ModelAndView("login.html");
+        } catch (WebClientResponseException e) {
+            return new ModelAndView("register.html");
+        }
     }
 
 
