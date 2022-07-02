@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.List;
 
@@ -68,7 +69,10 @@ public class AnnouncementService {
         return responseSpec.bodyToFlux(AnnouncementDTO.class).collectList().block();
     }
 
-    public AnnouncementDTO add(AnnouncementDTO announcementDTO) {
+    public AnnouncementDTO add(AnnouncementDTO announcementDTO, String sender) {
+        announcementDTO.setSendDate(LocalDateTime.now().toString());
+        announcementDTO.setSender(sender);
+        announcementDTO.setType("NORMAL");
         WebClient.UriSpec<WebClient.RequestBodySpec> uriSpec = client.method(HttpMethod.POST);
 
         WebClient.RequestBodySpec bodySpec = uriSpec.uri("/add");

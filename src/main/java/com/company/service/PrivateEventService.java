@@ -6,6 +6,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
 
 import java.nio.charset.StandardCharsets;
 import java.time.ZonedDateTime;
@@ -32,8 +33,7 @@ public class PrivateEventService {
                 .ifModifiedSince(ZonedDateTime.now())
                 .retrieve();
 
-        List<PrivateEventDTO> list = responseSpec.bodyToFlux(PrivateEventDTO.class).collectList().block();
-        return list;
+        return responseSpec.bodyToFlux(PrivateEventDTO.class).collectList().block();
     }
 
     public PrivateEventDTO findById(int id) {

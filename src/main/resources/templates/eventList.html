@@ -45,8 +45,8 @@
                     <a class="dropdown-toggle" data-toggle="dropdown">EVENTS
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/privateEvent">PRIVATE EVENTS CALENDAR</a></li>
-                        <li><a href="/publicEvent">PUBLIC EVENTS CALENDAR</a></li>
+                        <li><a href="/privateEvents">PRIVATE EVENTS CALENDAR</a></li>
+                        <li><a href="/publicEvents">PUBLIC EVENTS CALENDAR</a></li>
                         <li><a href="/eventList">EVENT LIST</a></li>
                         <li><a href="/addPrivateEvent">CREATE PRIVATE EVENT</a></li>
                         <li><a href="/addPublicEvent">CREATE PUBLIC EVENT</a></li>
@@ -58,7 +58,7 @@
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li id="userMenu_Notifications"><a href="/notifications">Notifications</a><span
-                                class="badge">3</span></li>
+                                class="badge"  th:text="${unreadNotifications}"></span></li>
                         <li id="userMenu_LogOut"><a href="/logout">Logout</a></li>
                     </ul>
                 </li>
@@ -67,7 +67,6 @@
         </div>
     </div>
 </nav>
-
 
 <div id="addEvents" class="container">
     <h1 class="text-center">Events</h1>
@@ -83,12 +82,13 @@
                 <input type="submit" value="+" class="btn btn-round" id="buttonAddPublicEvent"/>
             </form>
 
+            <h2 th:text="${noPublicEvents}"></h2>
+
             <ul>
-                <li>
-                    <h2>Discutii in biserica cu tinerii familisti</h2>
-                    <p>From "start_date" to "end_date"</p>
-                    <p>Room number: 2, having the max capacity of 75 people.</p>
-                    <p>Invited groups: "Tineri", "Familisti"</p>
+                <li th:each="event: ${publicEvents}">
+                    <h2 th:text="${'EventName: ' + event.name}"></h2>
+                    <p th:text="${'Start date:' + event.startDate + ' to: ' + event.endDate}"></p>
+                    <p th:text="${'Location in room: ' + event.roomId}"></p>
                 </li>
             </ul>
 
@@ -100,13 +100,16 @@
                 <input type="submit" value="+" class="btn btn-round" id="buttonAddPrivateEvent"/>
             </form>
 
+            <h2 th:text="${noPrivateEvents}"></h2>
+
+
             <ul>
-                <li>
-                    <h2>Excursie pe munte</h2>
-                    <p>From "start_date" to "end_date"</p>
-                    <p>Location: Piatra Craiului</p>
-                    <p>Details: Un weekend de neuitat la muntii Piatra Craiului.</p>
-                    <p>Invited groups: "Tineri", "Familisti"</p>
+                <li th:each="event: ${privateEvents}">
+                    <h2 th:text="${'EventName: ' + event.name}"></h2>
+                    <p th:text="${'Start date:' + event.startDate + ' to: ' + event.endDate}"></p>
+                    <p th:text="${'description: ' + event.description}"></p>
+                    <p th:text="${'details: ' + event.details}"></p>
+                    <p th:text="${'Location: ' + event.roomId}"></p>
                 </li>
             </ul>
 

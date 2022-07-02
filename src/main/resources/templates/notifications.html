@@ -45,8 +45,8 @@
                     <a class="dropdown-toggle" data-toggle="dropdown">EVENTS
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/privateEvent">PRIVATE EVENTS CALENDAR</a></li>
-                        <li><a href="/publicEvent">PUBLIC EVENTS CALENDAR</a></li>
+                        <li><a href="/privateEvents">PRIVATE EVENTS CALENDAR</a></li>
+                        <li><a href="/publicEvents">PUBLIC EVENTS CALENDAR</a></li>
                         <li><a href="/eventList">EVENT LIST</a></li>
                         <li><a href="/addPrivateEvent">CREATE PRIVATE EVENT</a></li>
                         <li><a href="/addPublicEvent">CREATE PUBLIC EVENT</a></li>
@@ -58,7 +58,7 @@
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li id="userMenu_Notifications"><a href="/notifications">Notifications</a><span
-                                class="badge">3</span></li>
+                                class="badge"  th:text="${unreadNotifications}"></span></li>
                         <li id="userMenu_LogOut"><a href="/logout">Logout</a></li>
                     </ul>
                 </li>

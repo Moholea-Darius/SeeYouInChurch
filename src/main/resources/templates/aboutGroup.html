@@ -45,8 +45,8 @@
                     <a class="dropdown-toggle" data-toggle="dropdown">EVENTS
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/privateEvent">PRIVATE EVENTS CALENDAR</a></li>
-                        <li><a href="/publicEvent">PUBLIC EVENTS CALENDAR</a></li>
+                        <li><a href="/privateEvents">PRIVATE EVENTS CALENDAR</a></li>
+                        <li><a href="/publicEvents">PUBLIC EVENTS CALENDAR</a></li>
                         <li><a href="/eventList">EVENT LIST</a></li>
                         <li><a href="/addPrivateEvent">CREATE PRIVATE EVENT</a></li>
                         <li><a href="/addPublicEvent">CREATE PUBLIC EVENT</a></li>
@@ -58,7 +58,7 @@
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li id="userMenu_Notifications"><a href="/notifications">Notifications</a><span
-                                class="badge">3</span></li>
+                                class="badge"  th:text="${unreadNotifications}"></span></li>
                         <li id="userMenu_LogOut"><a href="/logout">Logout</a></li>
                     </ul>
                 </li>
@@ -68,33 +68,28 @@
     </div>
 </nav>
 
-
 <!-- Container (The groups Section) -->
 <div id="groups" class="container text-center">
-    <h5>THE CHURCH: GROUPS</h5>
-    <h3>TINERI "GROUP NAME"</h3>
+    <h5>SeeYouInChurch : GROUPS</h5>
+    <h3 th:text="${groupName}"></h3>
     <hr>
     <h3>Group description</h3>
-    <textarea class="form-control DescriptionAboutGroup" rows="3" placeholder="XBla bla bla bla blaaaa"></textarea>
 
-    <form action="/updateDescription">
+    <form method="POST" th:action="@{/aboutGroup}" th:object="${groupDTO}" >
+        <textarea class="form-control DescriptionAboutGroup" rows="3" th:field="*{description}" th:placeholder="${details}" ></textarea>
         <input type="submit" value="Update description" class="btn btn-secondary updateDescriptionAboutGroupButton"/>
     </form>
     <hr>
     <div class="">
         <h3>Members</h3>
-        <p>Total number of this groups' members is 34</p>
+        <p th:text="${totalMembers}"></p>
 
 
         <a href="#groupMembers" data-toggle="collapse">
             <p class="text-center">Check our members</p>
         </a>
-        <div id="groupMembers" class="collapse">
-            <p>IIon Andreica</p>
-            <p>IIon Andreica</p>
-            <p>IIon Andreica</p>
-            <p>Ion Andreica Toni Mihai Cerna</p>
-
+        <div id="groupMembers"  class="collapse">
+            <p th:each="user: ${users}" th:text="${user.name + user.surname}"></p>
         </div>
 
     </div>

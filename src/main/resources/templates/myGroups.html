@@ -45,8 +45,8 @@
                     <a class="dropdown-toggle" data-toggle="dropdown">EVENTS
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/privateEvent">PRIVATE EVENTS CALENDAR</a></li>
-                        <li><a href="/publicEvent">PUBLIC EVENTS CALENDAR</a></li>
+                        <li><a href="/privateEvents">PRIVATE EVENTS CALENDAR</a></li>
+                        <li><a href="/publicEvents">PUBLIC EVENTS CALENDAR</a></li>
                         <li><a href="/eventList">EVENT LIST</a></li>
                         <li><a href="/addPrivateEvent">CREATE PRIVATE EVENT</a></li>
                         <li><a href="/addPublicEvent">CREATE PUBLIC EVENT</a></li>
@@ -58,7 +58,7 @@
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li id="userMenu_Notifications"><a href="/notifications">Notifications</a><span
-                                class="badge">3</span></li>
+                                class="badge"  th:text="${unreadNotifications}"></span></li>
                         <li id="userMenu_LogOut"><a href="/logout">Logout</a></li>
                     </ul>
                 </li>
@@ -68,24 +68,23 @@
     </div>
 </nav>
 
-
 <!-- Container (The groups Section) -->
 <div id="groups" class="container text-center">
-    <h3>THE CHURCH: GROUPS</h3>
+    <h3>See You In Church : GROUPS</h3>
     <p><em>Here you can see all the groups from our Church in which you take part.</em></p>
     <br>
 
     <div class="row">
-        <div class="col-sm-4">
-            <p class="text-center"><strong>"Tineri"</strong></p>
+        <div th:each="group: ${groups}" class="col-sm-4">
+            <p class="text-center"><strong th:text="${group.name}"></strong></p>
 
-            <form action="/leave" class="leaveGroup">
-                <input type="submit" value="Leave" class="btn leaveGroupButton" data-toggle="modal"
+            <form class="leaveGroup">
+                <input type="submit" value="leave" class="btn leaveGroupButton" data-toggle="modal"
                        data-target="#modalLeaveGroup"/>
             </form>
             <!--<button type="button" class="btn aboutGroupButton" id="aboutGroupButton_Tineri" data-toggle="modal" data-target="#modalAboutGroup">About</button> -->
-            <a href="/aboutGroup">
-                <img src="IMG/groups.png" class="img-circle person" alt="Tineri" width="255" height="255">
+            <a th:href="${'/aboutGroup?groupId=' + group.id}">
+                <img src="/assets/IMG/groups.png" class="img-circle person" alt="Tineri" width="255" height="255">
             </a>
 
         </div>
