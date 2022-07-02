@@ -50,8 +50,8 @@
                     <a class="dropdown-toggle" data-toggle="dropdown">EVENTS
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/privateEvent">PRIVATE EVENTS CALENDAR</a></li>
-                        <li><a href="/publicEvent">PUBLIC EVENTS CALENDAR</a></li>
+                        <li><a href="/privateEvents">PRIVATE EVENTS CALENDAR</a></li>
+                        <li><a href="/publicEvents">PUBLIC EVENTS CALENDAR</a></li>
                         <li><a href="/eventList">EVENT LIST</a></li>
                         <li><a href="/addPrivateEvent">CREATE PRIVATE EVENT</a></li>
                         <li><a href="/addPublicEvent">CREATE PUBLIC EVENT</a></li>
@@ -63,7 +63,7 @@
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li id="userMenu_Notifications"><a href="/notifications">Notifications</a><span
-                                class="badge">3</span></li>
+                                class="badge"  th:text="${unreadNotifications}"></span></li>
                         <li id="userMenu_LogOut"><a href="/logout">Logout</a></li>
                     </ul>
                 </li>
@@ -74,14 +74,14 @@
 </nav>
 
 <div id="groups" class="container text-center">
-    <h5>THE CHURCH: EVENTS</h5>
+    <h5>See You In Church : EVENTS</h5>
     <h3>Create Public event</h3>
     <hr>
 
-    <form class="">
+    <form  method="POST" th:action="@{/addPublicEvent}" th:object="${publicEventViewDTO}" class="">
         <div class="form-group">
             <label for="eventName" class="col-form-label">Public event name:</label>
-            <textarea class="form-control" id="eventName" rows="2" placeholder="" required></textarea>
+            <textarea class="form-control" id="eventName" rows="2" placeholder="" th:field="*{name}" required></textarea>
         </div>
 
         <hr>
@@ -89,13 +89,13 @@
         <div class="form-group">
             <label for="datetimepickerSTART" class="col-form-label">Public event start date:</label>
             <br>
-            <input class="form-control" id="datetimepickerSTART" type="text" required>
+            <input class="form-control" id="datetimepickerSTART" type="text" th:field="*{startDate}" required>
         </div>
 
         <div class="form-group">
             <label for="datetimepickerEND" class="col-form-label">Public event end date:</label>
             <br>
-            <input class="form-control" id="datetimepickerEND" type="text" required>
+            <input class="form-control" id="datetimepickerEND" type="text" th:field="*{endDate}" required>
         </div>
 
         <hr>
@@ -103,31 +103,33 @@
         <div class="form-group">
             <label class="col-form-label">Choose the room in which the event will take place:</label>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" th:field="*{roomId}" value="1"
                        checked>
-                <label class="form-check-label" for="exampleRadios1">Room 1, having the max. capacity of 250
+                <label class="form-check-label" for="exampleRadios1">Room 1, having the max. capacity of 300
                     people</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" th:field="*{roomId}" value="2">
                 <label class="form-check-label" for="exampleRadios2">Room 2, having the max. capacity of 50
                     people</label>
             </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" th:field="*{roomId}" value="3">
+                <label class="form-check-label" for="exampleRadios2">Room 2, having the max. capacity of 50
+                    people</label>
+            </div>
+
+            <div class="form-group">
+                <label class="col-form-label">Check the groups that will attend:</label>
+                <div th:each="group: ${groups}" class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox"  th:field="*{groups}" th:value="${group.id}"id="inlineCheckbox1">
+                    <label class="form-check-label" for="inlineCheckbox1" th:text="${group.name}" ></label>
+                </div>
+
+            </div>
         </div>
 
-        <hr>
-
-        <div class="form-group">
-            <label class="col-form-label">Check the groups that will attend:</label>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                <label class="form-check-label" for="inlineCheckbox1">Tineri</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                <label class="form-check-label" for="inlineCheckbox2">Familisti</label>
-            </div>
-        </div>
         <hr>
 
         <form action="/addPublicEvent">

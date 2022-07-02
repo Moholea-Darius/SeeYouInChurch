@@ -40,7 +40,7 @@
                                         <div class="form-outline flex-fill mb-0">
 
                                             <label class="form-label" for="surnameInput">Your Surname</label>
-                                            <input type="text" id="surnameInput" class="form-control" th:field="*{name}" required/>
+                                            <input type="text" id="surnameInput" class="form-control" th:field="*{surname}" required/>
 
                                         </div>
                                     </div>
@@ -50,7 +50,7 @@
                                         <div class="form-outline flex-fill mb-0">
 
                                             <label class="form-label" for="adressInput">Your Adress</label>
-                                            <input type="text" id="adressInput" class="form-control" th:field="*{name}" required/>
+                                            <input type="text" id="adressInput" class="form-control" th:field="*{address}" required/>
 
                                         </div>
                                     </div>
@@ -60,7 +60,7 @@
                                         <div class="form-outline flex-fill mb-0">
 
                                             <label class="form-label" for="telInput">Your phone number</label>
-                                            <input type="text" id="telInput" class="form-control" th:field="*{name}"/>
+                                            <input type="text" id="telInput" class="form-control" th:field="*{phoneNumber}" required/>
                                             <small class="form-text text-muted">Format: xxxx-xxx-xxx</small>
 
                                         </div>
@@ -69,7 +69,7 @@
 
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
-                                        <select class="form-select form-outline flex-fill mb-0" th:field="*{name}" required>
+                                        <select class="form-select form-outline flex-fill mb-0" th:field="*{sex}" required>
                                             <option value="0">Male</option>
                                             <option value="1">Female</option>
                                         </select>
@@ -81,7 +81,7 @@
                                             <label class="form-label" for="emailInput">Your Email</label>
                                             <input type="email" id="emailInput" class="form-control"
                                                    aria-describedby="emailHelp"
-                                                   th:field="*{name}"
+                                                   th:field="*{email}"
                                                    pattern="^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$"
                                                    required/>
                                             <small class="form-text text-muted">We'll never share your email with anyone
@@ -94,7 +94,7 @@
                                         <div class="form-outline flex-fill mb-0">
                                             <label class="form-label" for="passwordInput">Password</label>
                                             <input type="password" id="passwordInput" class="form-control"
-                                                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" th:field="*{name}" required/>
+                                                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" th:field="*{password}" required/>
                                             <small id="emailHelp" class="form-text text-muted">Password must contain at
                                                 least one number and one uppercase and lowercase letter and at least 6
                                                 or more characters)</small>
