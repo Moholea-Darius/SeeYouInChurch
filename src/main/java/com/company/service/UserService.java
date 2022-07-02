@@ -1,17 +1,20 @@
 package com.company.service;
 
 import com.company.dtos.UserDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.nio.charset.StandardCharsets;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,6 +22,9 @@ public class UserService implements UserDetailsService {
 
     private final String baseUrl = "http://localhost:8080/users";
     private final WebClient client = WebClient.create(baseUrl);
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public List<UserDTO> findAll() {
         WebClient.UriSpec<WebClient.RequestBodySpec> uriSpec = client.method(HttpMethod.GET);
@@ -89,6 +95,15 @@ public class UserService implements UserDetailsService {
     }
 
     public Object add(UserDTO userDTO) {
+        if (userDTO.getSex().equals("0")){
+            userDTO.setSex("MALE");
+        } else {
+            userDTO.setSex("FEMALE");
+        }
+        userDTO.setUserType("MEMBER");
+        userDTO.setDepartments(new ArrayList<>());
+        userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+
         WebClient.UriSpec<WebClient.RequestBodySpec> uriSpec = client.method(HttpMethod.POST);
 
         WebClient.RequestBodySpec bodySpec = uriSpec.uri("/add");

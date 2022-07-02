@@ -107,9 +107,8 @@
                 <li th:each="event: ${privateEvents}">
                     <h2 th:text="${'EventName: ' + event.name}"></h2>
                     <p th:text="${'Start date:' + event.startDate + ' to: ' + event.endDate}"></p>
-                    <p th:text="${'description: ' + event.description}"></p>
                     <p th:text="${'details: ' + event.details}"></p>
-                    <p th:text="${'Location: ' + event.roomId}"></p>
+                    <p th:text="${'Location: ' + event.location}"></p>
                 </li>
             </ul>
 

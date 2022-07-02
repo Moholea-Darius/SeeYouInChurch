@@ -1,9 +1,6 @@
 package com.company.controller;
 
-import com.company.dtos.AnnouncementDTO;
-import com.company.dtos.GroupDTO;
-import com.company.dtos.NotificationDTO;
-import com.company.dtos.UserDTO;
+import com.company.dtos.*;
 import com.company.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -64,13 +61,15 @@ public class MainController {
     public ModelAndView getEventListView() {
         ModelAndView modelAndView = new ModelAndView("eventList.html");
         UserDTO userDTO = userService.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+        modelAndView.addObject("unreadNotifications", notificationService.getUserUnreadNotifications(userDTO.getId()).size());
         try {
-            modelAndView.addObject("unreadNotifications", notificationService.getUserUnreadNotifications(userDTO.getId()).size());
             modelAndView.addObject("publicEvents", publicEventService.findAll());
-            modelAndView.addObject("privateEvents", privateEventService.findAll());
-
         } catch (WebClientResponseException e) {
             modelAndView.addObject("noPublicEvents", "There are no public events");
+        }
+        try {
+            modelAndView.addObject("privateEvents", privateEventService.findAll());
+        } catch (WebClientResponseException e) {
             modelAndView.addObject("noPrivateEvents", "There are no private events");
 
         }
@@ -216,5 +215,74 @@ public class MainController {
         return modelAndView;
     }
 
+    @GetMapping("/addPublicEvent")
+    public ModelAndView getAddPublicEventPage(PublicEventViewDTO publicEventViewDTO) {
+        UserDTO userDTO = userService.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+        ModelAndView modelAndView = new ModelAndView("addPublicEvent.html");
+        modelAndView.addObject("groups", groupService.findAll());
+        return modelAndView;
+    }
+
+    @PostMapping("/addPublicEvent")
+    public ModelAndView getAddPublicEvent(PublicEventViewDTO publicEventViewDTO) {
+        ModelAndView modelAndView = new ModelAndView("eventList.html");
+        PublicEventDTO eventDTO = new PublicEventDTO(publicEventViewDTO.getId(), publicEventViewDTO.getName(), publicEventViewDTO.getStartDate(), publicEventViewDTO.getEndDate(), publicEventViewDTO.getRoomId());
+        publicEventService.add(Integer.valueOf(publicEventViewDTO.getGroups()[0]), eventDTO);
+        UserDTO userDTO = userService.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+        modelAndView.addObject("unreadNotifications", notificationService.getUserUnreadNotifications(userDTO.getId()).size());
+        try {
+            modelAndView.addObject("publicEvents", publicEventService.findAll());
+        } catch (WebClientResponseException e) {
+            modelAndView.addObject("noPublicEvents", "There are no public events");
+        }
+        try {
+            modelAndView.addObject("privateEvents", privateEventService.findAll());
+        } catch (WebClientResponseException e) {
+            modelAndView.addObject("noPrivateEvents", "There are no private events");
+
+        }
+        return modelAndView;
+    }
+
+    @GetMapping("/addPrivateEvent")
+    public ModelAndView getAddPrivateEventPage(PrivateEventViewDTO privateEventViewDTO) {
+        UserDTO userDTO = userService.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+        ModelAndView modelAndView = new ModelAndView("addPrivateEvent.html");
+        modelAndView.addObject("groups", groupService.findAll());
+        return modelAndView;
+    }
+
+    @PostMapping("/addPrivateEvent")
+    public ModelAndView addPrivateEvent(PrivateEventViewDTO privateEventViewDTO) {
+        ModelAndView modelAndView = new ModelAndView("eventList.html");
+        PrivateEventDTO eventDTO = new PrivateEventDTO(privateEventViewDTO.getId(), privateEventViewDTO.getName(), privateEventViewDTO.getStartDate(), privateEventViewDTO.getEndDate(), privateEventViewDTO.getLocation(), privateEventViewDTO.getDetails());
+        privateEventService.add(Integer.valueOf(privateEventViewDTO.getGroups()[0]), eventDTO);
+        UserDTO userDTO = userService.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+        modelAndView.addObject("unreadNotifications", notificationService.getUserUnreadNotifications(userDTO.getId()).size());
+        try {
+            modelAndView.addObject("publicEvents", publicEventService.findAll());
+        } catch (WebClientResponseException e) {
+            modelAndView.addObject("noPublicEvents", "There are no public events");
+        }
+        try {
+            modelAndView.addObject("privateEvents", privateEventService.findAll());
+        } catch (WebClientResponseException e) {
+            modelAndView.addObject("noPrivateEvents", "There are no private events");
+
+        }
+        return modelAndView;
+    }
+
+    @GetMapping("/privateEvents")
+    public ModelAndView getPrivateEventSPage() {
+        ModelAndView modelAndView = new ModelAndView("privateEvent.html");
+        return modelAndView;
+    }
+
+    @GetMapping("/publicEvents")
+    public ModelAndView getPublicEvents() {
+        ModelAndView modelAndView = new ModelAndView("publicEvent.html");
+        return modelAndView;
+    }
 
 }
