@@ -45,8 +45,8 @@
                     <a class="dropdown-toggle" data-toggle="dropdown">EVENTS
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/privateEvent">PRIVATE EVENTS CALENDAR</a></li>
-                        <li><a href="/publicEvent">PUBLIC EVENTS CALENDAR</a></li>
+                        <li><a href="/privateEvents">PRIVATE EVENTS CALENDAR</a></li>
+                        <li><a href="/publicEvents">PUBLIC EVENTS CALENDAR</a></li>
                         <li><a href="/eventList">EVENT LIST</a></li>
                         <li><a href="/addPrivateEvent">CREATE PRIVATE EVENT</a></li>
                         <li><a href="/addPublicEvent">CREATE PUBLIC EVENT</a></li>
@@ -58,7 +58,7 @@
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li id="userMenu_Notifications"><a href="/notifications">Notifications</a><span
-                                class="badge">3</span></li>
+                                class="badge"  th:text="${unreadNotifications}"></span></li>
                         <li id="userMenu_LogOut"><a href="/logout">Logout</a></li>
                     </ul>
                 </li>
@@ -71,20 +71,20 @@
 
 <!-- Container (The groups Section) -->
 <div id="groups" class="container text-center">
-    <h5>THE CHURCH: GROUPS</h5>
+    <h5>See You In Church: GROUPS</h5>
     <h3>Create groups</h3>
     <hr>
 
-    <form class="">
+    <form method="POST" th:action="@{/addGroups}" th:object="${groupDTO}" class="">
         <div class="form-group">
             <label for="group-name" class="col-form-label">Group name:</label>
-            <input type="text" class="form-control" id="group-name" required>
+            <input type="text" class="form-control" th:field="*{name}" id="group-name" required>
         </div>
         <div class="form-group">
             <label for="group-description" class="col-form-label">Group description:</label>
-            <textarea class="form-control" id="group-description" required></textarea>
+            <textarea class="form-control" th:field="*{description}" id="group-description" required></textarea>
         </div>
-        <form action="/updateDescription">
+        <form action="/addGroups">
             <input type="submit" value="Create group" class="btn btn-secondary createGroup"/>
         </form>
     </form>

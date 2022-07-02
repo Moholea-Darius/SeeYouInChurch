@@ -11,6 +11,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -108,4 +109,19 @@ public class NotificationService {
         return responseSpec.bodyToMono(NotificationDTO.class).block();
     }
 
+    public List<NotificationDTO> getUserUnreadNotifications(int userId) {
+        List<NotificationDTO> notificationDTOS = new ArrayList<>();
+        for (NotificationDTO dto : findByUserId(userId)) {
+            if (dto.getStatus().equals(NotificationStatus.UNREAD.name())) {
+                notificationDTOS.add(dto);
+            }
+        }
+        return notificationDTOS;
+    }
+
+    public void updateMessages(List<NotificationDTO> userUnreadNotifications) {
+        for (NotificationDTO notification : userUnreadNotifications) {
+            update(notification.getId());
+        }
+    }
 }

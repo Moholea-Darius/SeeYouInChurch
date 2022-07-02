@@ -59,7 +59,7 @@
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li id="userMenu_Notifications"><a href="/notifications">Notifications</a><span
-                                class="badge">3</span></li>
+                                class="badge"  th:text="${unreadNotifications}"></span></li>
                         <li id="userMenu_LogOut"><a href="/logout">Logout</a></li>
                     </ul>
                 </li>
@@ -149,6 +149,7 @@
 
     <div class="tab-content">
         <div id="announcements" class="tab-pane fade in active">
+
             <form action="/addAnnouncement">
                 <input type="submit" value="+" class="btn btn-round" id="buttonAddAnnouncement"/>
             </form>
@@ -160,23 +161,21 @@
                 </li>
             </ul>
         </div>
-    </div>
 
-    <div id="menu1" class="tab-pane fade">
-        <h2>1995, The year our Church was built</h2>
-        <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-    </div>
-    <div id="menu2" class="tab-pane fade">
-        <h2>Our identity</h2>
-        <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-    </div>
-    <div id="menu3" class="tab-pane fade">
-        <h2>Our Values</h2>
-        <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.</p>
+        <div id="menu1" class="tab-pane fade">
+            <h2>1995, The year our Church was built</h2>
+            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+        </div>
+        <div id="menu2" class="tab-pane fade">
+            <h2>Our identity</h2>
+            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+        </div>
+        <div id="menu3" class="tab-pane fade">
+            <h2>Our Values</h2>
+            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.</p>
+        </div>
     </div>
 </div>
-</div>
-
 
 <!-- Container (Contact Section) -->
 <div id="contact" class="container">
